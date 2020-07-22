@@ -115,7 +115,7 @@ def main():
                             similar_movies = similar_movies.append(get_similar(movie,rating),ignore_index = True)
                         recc_movies = similar_movies.sum().sort_values(ascending=False).head(14)[3:13] #summing and sorting DF, also slicing for no repeats
                         count = 1
-                        st.markdown('## Top 10 Recommendations based on your movie choices:')
+                        st.markdown('## Top 10 Recommendations based on your movie picks:')
                         for key, value in dict(recc_movies).items(): # Displaying the output
                             st.info(str(count) + '. ' + str(key))
                             count += 1
@@ -129,7 +129,10 @@ def main():
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
     if page_selection == "Solution Overview":
         st.title("Solution Overview")
-        st.write("Describe your winning approach on this page")
+        st.markdown("## Content based filtering")
+        st.write("Describe content based algo")
+        st.markdown('## Collaborative based filtering')
+        st.write('Describe collaborative algo here')
 
     # You may want to add more sections here for aspects such as an EDA,
     # or to provide your business pitch.
