@@ -39,6 +39,20 @@ from recommenders.content_based import content_model
 
 # Data Loading
 title_list = load_movie_titles('resources/data/movies.csv')
+# title_list = sorted(title_list)
+train = pd.read_csv('resources/data/train.csv')
+movies = pd.read_csv('resources/data/movies.csv')
+tr = train.copy()
+tr = tr.drop('timestamp', axis=1)
+merged = pd.merge(tr,movies,on='movieId')
+merge = merged.copy()
+merge = merged.drop('genres', axis=1)
+
+merge = merge[:500000]
+m = merge.pivot_table(index=['userId'],columns=['title'],values='rating')
+new_title_list = []
+for i in m:
+    new_title_list.append(i)
 
 # App declaration
 def main():
@@ -63,10 +77,10 @@ def main():
 
         # User-based preferences
         st.write('### Enter Your Three Favorite Movies')
-        movie_1 = st.selectbox('Fisrt Option',title_list[14930:15200])
-        movie_2 = st.selectbox('Second Option',title_list[25055:25255])
-        movie_3 = st.selectbox('Third Option',title_list[21100:21200])
-        fav_movies = [movie_1,movie_2,movie_3]
+        movie_1 = st.selectbox('First Option',new_title_list[:1000])
+        movie_2 = st.selectbox('Second Option',new_title_list[:1000])
+        movie_3 = st.selectbox('Third Option',new_title_list[:1000])
+        fav_movies = [(movie_1,5),(movie_2,5),(movie_3,5)]
 
         # Perform top-10 movie recommendation generation
         if sys == 'Content Based Filtering':
@@ -87,11 +101,21 @@ def main():
             if st.button("Recommend"):
                 try:
                     with st.spinner('Crunching the numbers...'):
-                        top_recommendations = collab_model(movie_list=fav_movies,
-                                                           top_n=10)
-                    st.title("We think you'll like:")
-                    for i,j in enumerate(top_recommendations):
-                        st.subheader(str(i+1)+'. '+j)
+                        userRatings = m.dropna(thresh=10, axis=1).fillna(0,axis=1)
+                        corrMatrix = userRatings.corr(method='pearson')
+                        def get_similar(movie_name,rating=5):
+                            similar_ratings = corrMatrix[movie_name]*(rating-2.5)
+                            similar_ratings = similar_ratings.sort_values(ascending=False)
+                            return similar_ratings
+                        similar_movies = pd.DataFrame()
+                        for movie,rating in fav_movies:
+                            similar_movies = similar_movies.append(get_similar(movie,rating),ignore_index = True)
+                        recc_movies = similar_movies.sum().sort_values(ascending=False).head(14)[3:13]
+                        count = 1
+                        st.markdown('## Top 10 Recommendations based on your movie choices:')
+                        for key, value in dict(recc_movies).items():
+                            st.info(str(count) + '. ' + str(key))
+                            count += 1
                 except:
                     st.error("Oops! Looks like this algorithm does't work.\
                               We'll need to fix it!")
