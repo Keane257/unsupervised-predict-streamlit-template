@@ -141,6 +141,7 @@ def main():
     # or to provide your business pitch.
     if page_selection == "Insights":
         st.title('Our Insights and EDA')
+        st.image('resources/imgs/image_insightpage.jpg', width=500)
         st.markdown("## Introduction")
         st.info("""Recommendation sysytems are an integral part to any online user based service platform. In short an alogrithim is 
                     created that will reccomened you items (eg: movies) based on your history with past items.
