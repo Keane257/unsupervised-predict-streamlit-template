@@ -142,7 +142,11 @@ def main():
     if page_selection == "Insights":
         st.title('Our Insights and EDA')
         st.markdown("## Introduction")
-        st.info('Intro Here')
+        st.info("""Recommendation sysytems are an integral part to any online user based service platform. In short an alogrithim is 
+                    created that will reccomened you items (eg: movies) based on your history with past items.
+                    For this challenge we are tasked to create a movie recommendation system, There were two paths that we could take. 
+                    Content Based Filtering and Collaborative Filtering, We chose to try out both in which we will get further into 
+                    this notebook""")
         st.markdown('## Insteresting insights and EDA')
         st.info('insights here')
 
