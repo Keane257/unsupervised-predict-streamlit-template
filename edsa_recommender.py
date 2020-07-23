@@ -62,6 +62,9 @@ def main():
 
     # DO NOT REMOVE the 'Recommender System' option below, however,
     # you are welcome to add more options to enrich your app.
+    st.write('----------------------------------------------------------')
+    st.title('Movie Recommendation Engine')
+    st.write('----------------------------------------------------------')
     page_options = ["Recommender System","Solution Overview", "Insights"]
 
     # -------------------------------------------------------------------
@@ -70,7 +73,6 @@ def main():
     page_selection = st.sidebar.selectbox("Choose Option", page_options)
     if page_selection == "Recommender System":
         # Header contents
-        st.write('# Movie Recommender Engine')
         st.write('### EXPLORE Data Science Academy Unsupervised Predict')
         st.image('resources/imgs/Image_header.png',use_column_width=True)
         st.info("See **Solution Overview** and **Insights** pages for more information on modelling and analysis")
