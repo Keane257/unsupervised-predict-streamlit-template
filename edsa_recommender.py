@@ -149,8 +149,15 @@ def main():
                     Content Based Filtering and Collaborative Filtering, We chose to try out both in which we will get further into 
                     this notebook""")
         st.markdown('## Insteresting insights and EDA')
-        st.info('insights here')
-
+        st.write('**Top 5 Movies with the Highest Ratings:**')
+        st.markdown("""
+                    1. Final Recourse (2013)\n
+                    2. Lady and the Tramp (2019)\n
+                    3. Virasat (1997)\n
+                    4. Committed (2014)\n
+                    5. Sole Proprietor (2016)\n  """)
+        st.write("\n**Distribution for Number of Ratings**")
+        st.image('resources/imgs/rating_distibution.png', width=500)
 
 if __name__ == '__main__':
     main()
