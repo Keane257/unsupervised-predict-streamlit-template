@@ -141,7 +141,10 @@ def main():
     # or to provide your business pitch.
     if page_selection == "Insights":
         st.title('Our Insights and EDA')
-        st.markdown("## Fill insights here if we have time")
+        st.markdown("## Introduction")
+        st.info('Intro Here')
+        st.markdown('## Insteresting insights and EDA')
+        st.info('insights here')
 
 
 if __name__ == '__main__':
