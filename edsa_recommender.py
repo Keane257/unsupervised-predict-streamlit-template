@@ -211,5 +211,11 @@ def main():
         
         st.write("**Average of Movie Ratings per Year**")
         st.image('resources/imgs/rating_year.png', width=400)
+
+        st.write("**Average Movie Rating per Week**")
+        st.image('resources/imgs/ratings_week.png', width=400)
+
+        st.write("**Number of ratings per year**")
+        st.image('resources/imgs/number_ratings.png', width=400)
 if __name__ == '__main__':
     main()
