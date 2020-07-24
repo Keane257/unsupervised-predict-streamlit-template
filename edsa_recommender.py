@@ -73,12 +73,23 @@ def main():
     st.write('----------------------------------------------------------')
     st.title('Movie Recommendation Engine')
     st.write('----------------------------------------------------------')
-    page_options = ["Recommender System","Solution Overview", "Insights"]
+    page_options = ["Home", "Recommender System", "How it works", "Solution Overview", "Insights"]
 
     # -------------------------------------------------------------------
     # ----------- !! THIS CODE MUST NOT BE ALTERED !! -------------------
     # -------------------------------------------------------------------
     page_selection = st.sidebar.selectbox("Choose Option", page_options)
+
+    if page_selection == "Home":
+        st.title("Movie Recommender")
+        st.subheader("Welcome!")
+        st.markdown("This web app recommends movies based on similar or related to movies a user selects.")        
+        st.image('resources/imgs/Image_header.png',use_column_width=True)
+        st.info('See Recommender Systems page to run the enigine')        
+        st.subheader("Why recommender systems")
+        st.markdown("Any streaming platforms is built around lessening one’s time trying to decide which movie to watch. We supply users with relative content to watch taking into consideration their values and ideals. We would like to determine how people perceive streaming services and whether or not there is an issue that would be better rectified. This would help companies add to their market research efforts in gauging how their service recommendations may be improved.")
+
+
     if page_selection == "Recommender System":
         # Header contents
         st.write('### EXPLORE Data Science Academy Unsupervised Predict')
@@ -141,12 +152,34 @@ def main():
     # -------------------------------------------------------------------
 
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
+    
+    if page_selection == "How it works":
+        st.title("How it works")
+##    	st.image(How, caption='', width=500)
+##    	st.subheader("Navigation Bar")
+        st.markdown("Home Screen  - Landing page, gives brief discription of the App")
+    ##	st.image(Home_Page, width=500)
+        st.markdown("How it works - Explains how the app works, from navigating on pages, to how efficient the model used is.")
+    ##	st.image(How_to_Page, width=500)
+        st.markdown("EDA          - Exploratory data analysis shows how we analysing the tweets data sets to summarize their main characteristics, using visuals. EDA is basically for displaying what the data can tell us beyond the formal modeling.")
+    ##	    st.image(EDA_Page, width=500)
+    ##	    st.image(Predictions_Page, width=500)
+        st.subheader("App Usage")
+        st.markdown("")
+        st.subheader("Model Performance Evaluation")
+        st.markdown("Model evaluation aims to estimate the generalization accuracy of a model on future (unseen) data. Methods for evaluating a model's performance use a test set (i.e data not seen by the model) to evaluate model performance. This evaluation shows total efficiency as scores.")
+
+
     if page_selection == "Solution Overview":
         st.title("Solution Overview")
-        st.markdown("## Content based filtering")
-        st.write("Describe content based algo")
-        st.markdown('## Collaborative based filtering')
-        st.write('Describe collaborative algo here')
+
+        st.title("Content-based Filtering")
+        st.image('resources/imgs/content_based.png', width=350)
+        st.info("Content-based filtering, also referred to as cognitive filtering, recommends items based on a comparison between the content of the compared items, in this case its movie content, and a user profile. The content of each movie is represented as a set of descriptors or terms. Generally, Content-based filtering, makes recommendations based on user preferences for product features")
+
+        st.title("Collaborative-based Filtering")
+        st.image('resources/imgs/collab_based.jpg', width=350)
+        st.info("Collaborative filtering filters information by using the interactions and data collected by the system from other users. It's based on the idea that people who agreed in their evaluation of certain items are likely to agree again in the future. Collaborative filtering basically mimics user-to-user recommendations.")
 
     # You may want to add more sections here for aspects such as an EDA,
     # or to provide your business pitch.
