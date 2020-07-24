@@ -47,6 +47,8 @@ ratings_df = pd.read_csv('resources/data/ratings.csv')
 # Data Modifying
 tr = train.copy()
 tr = tr.drop('timestamp', axis=1)
+ratings_df = ratings_df.drop('timestamp', axis = 1)
+
 merged = pd.merge(tr,movies,on='movieId') # Merging the dataframes
 merge = merged.copy()
 merge = merged.drop('genres', axis=1)
