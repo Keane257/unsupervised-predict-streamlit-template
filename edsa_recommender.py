@@ -84,7 +84,7 @@ def main():
         st.title("Movie Recommender")
         st.subheader("Welcome!")
         st.markdown("This web app recommends movies based on similar or related to movies a user selects.")        
-        st.image('resources/imgs/Image_header.png',use_column_width=True)
+        st.image('resources/imgs/netflix_img.jpg',width=500)
         st.info('See Recommender Systems page to run the enigine')        
         st.subheader("Why recommender systems")
         st.markdown("Any streaming platforms is built around lessening one’s time trying to decide which movie to watch. We supply users with relative content to watch taking into consideration their values and ideals. We would like to determine how people perceive streaming services and whether or not there is an issue that would be better rectified. This would help companies add to their market research efforts in gauging how their service recommendations may be improved.")
@@ -205,6 +205,11 @@ def main():
         st.image('resources/imgs/distribution_graph.png', width=400)
         st.info("""From this we can see that people are more likely to give a movie an * Average * rating more than a great or awful rating.
         This makes sense because most movies are average and not every movie is great or awful. This could also lead us to belive that there may be certain biasy around our data.""")
-
+    
+        st.image('resources/imgs/director_ratings.png', width=200)
+        st.info("**These are the top 10 directors who have movies with the highest number of ratings Jonathan Nolan has the highest rating. this concludes that his movies are being watched and enjoyed by the users**")
+        
+        st.write("**Average of Movie Ratings per Year**")
+        st.image('resources/imgs/rating_year.png', width=400)
 if __name__ == '__main__':
     main()
