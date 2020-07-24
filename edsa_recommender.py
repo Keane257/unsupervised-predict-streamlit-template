@@ -181,7 +181,28 @@ def main():
 
     # You may want to add more sections here for aspects such as an EDA,
     # or to provide your business pitch.
-
+    if page_selection == "EDA Page":
+        st.title('Our Insights and EDA')
+        st.image('resources/imgs/image_insightpage.jpg', width=500)
+        st.markdown("## Introduction")
+        st.info("""Recommendation sysytems are an integral part to any online user based service platform. In short an alogrithim is 
+                    created that will reccomened you items (eg: movies) based on your history with past items.
+                    For this challenge we are tasked to create a movie recommendation system, There were two paths that we could take. 
+                    Content Based Filtering and Collaborative Filtering, We chose to try out both in which we will get further into 
+                    this notebook""")
+        st.markdown('## Insteresting insights and EDA')
+        st.write('**Top 5 Movies with the Highest Ratings:**')
+        st.markdown("""
+                    1. Final Recourse (2013)\n
+                    2. Lady and the Tramp (2019)\n
+                    3. Virasat (1997)\n
+                    4. Committed (2014)\n
+                    5. Sole Proprietor (2016)\n  """)
+        st.write("\n**Distribution for Number of Ratings**")
+        st.image('resources/imgs/rating_distibution.png', width=400)
+        st.image('resources/imgs/distribution_graph.png', width=400)
+        st.info("""From this we can see that people are more likely to give a movie an * Average * rating more than a great or awful rating.
+        This makes sense because most movies are average and not every movie is great or awful. This could also lead us to belive that there may be certain biasy around our data.""")
 
 if __name__ == '__main__':
     main()
