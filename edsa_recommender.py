@@ -81,11 +81,11 @@ def main():
     page_selection = st.sidebar.selectbox("Choose Option", page_options)
 
     if page_selection == "Home":
-        st.title("Movie Recommender")
+        st.title("Home")
         st.subheader("Welcome!")
         st.markdown("This web app recommends movies based on similar or related to movies a user selects.")        
         st.image('resources/imgs/netflix_img.jpg',width=500)
-        st.info('See Recommender Systems page to run the enigine')        
+        st.info('See ** Recommender Systems ** page to run the engine')        
         st.subheader("Why recommender systems")
         st.markdown("Any streaming platforms is built around lessening one’s time trying to decide which movie to watch. We supply users with relative content to watch taking into consideration their values and ideals. We would like to determine how people perceive streaming services and whether or not there is an issue that would be better rectified. This would help companies add to their market research efforts in gauging how their service recommendations may be improved.")
 
@@ -101,17 +101,16 @@ def main():
                         'Collaborative Based Filtering'))
 
         # User-based preferences
-        st.write('### Enter Your Three Favorite Movies')
-        movie_1 = st.selectbox('First Option',new_title_list[:1000])
-        movie_2 = st.selectbox('Second Option',new_title_list[1:1000])
-        movie_3 = st.selectbox('Third Option',new_title_list[2:1000])
-        # movie_1 = st.selectbox('First Option',title_list[14930:15200])
-        # movie_2 = st.selectbox('Second Option',title_list[25055:25255])
-        # movie_3 = st.selectbox('Third Option',title_list[21100:21200])
-        fav_movies = [(movie_1,5),(movie_2,5),(movie_3,5)] # Added ratings, for more efficient use in the model
+        st.write('### Enter Your Three Favorite Movies')        
 
         # Perform top-10 movie recommendation generation
         if sys == 'Content Based Filtering':
+            # Content Based options
+            movie_1 = st.selectbox('First Option',title_list[14930:15200])
+            movie_2 = st.selectbox('Second Option',title_list[25055:25255])
+            movie_3 = st.selectbox('Third Option',title_list[21100:21200])
+            fav_movies = [(movie_1),(movie_2),(movie_3)]
+
             if st.button("Recommend"):
                 try:
                     with st.spinner('Crunching the numbers...'):
@@ -126,27 +125,33 @@ def main():
 
 
         if sys == 'Collaborative Based Filtering':
+            # Collaborative Based Options
+            movie_1_colab = st.selectbox('First Option',new_title_list[:1000])
+            movie_2_colab = st.selectbox('Second Option',new_title_list[1:1000])
+            movie_3_colab = st.selectbox('Third Option',new_title_list[2:1000])
+            fav_movies_colab = [(movie_1_colab,5),(movie_2_colab,5),(movie_3_colab,5)] # Added ratings, for more efficient use in the model
+
             if st.button("Recommend"):
-                # try:
-                with st.spinner('Crunching the numbers...'): # spinner just for something to happen during loading time
-                    userRatings = m.dropna(thresh=10, axis=1).fillna(0,axis=1) # dropping and filling NaN values
-                    corrMatrix = userRatings.corr(method='pearson') # creating a correlation Matrix
-                    def get_similar(movie_name,rating=5): # Function for retriving similar movies based off correlation
-                        similar_ratings = corrMatrix[movie_name]*(rating-2.5)
-                        similar_ratings = similar_ratings.sort_values(ascending=False)
-                        return similar_ratings
-                    similar_movies = pd.DataFrame() # creating an empty Dataframe
-                    for movie,rating in fav_movies: # Filling the empty dataframe, and extracting from it
-                        similar_movies = similar_movies.append(get_similar(movie,rating),ignore_index = True)
-                    recc_movies = similar_movies.sum().sort_values(ascending=False).head(14)[3:13] #summing and sorting DF, also slicing for no repeats
-                    count = 1
-                    st.markdown('## Top 10 Recommendations based on your movie picks:')
-                    for key, value in dict(recc_movies).items(): # Displaying the output
-                        st.info(str(count) + '. ' + str(key))
-                        count += 1
-                # except:
-                #     st.error("Oops! Looks like this algorithm does't work.\
-                #               We'll need to fix it!")
+                try:
+                    with st.spinner('Crunching the numbers...'): # spinner just for something to happen during loading time
+                        userRatings = m.dropna(thresh=10, axis=1).fillna(0,axis=1) # dropping and filling NaN values
+                        corrMatrix = userRatings.corr(method='pearson') # creating a correlation Matrix
+                        def get_similar(movie_name,rating=5): # Function for retriving similar movies based off correlation
+                            similar_ratings = corrMatrix[movie_name]*(rating-2.5)
+                            similar_ratings = similar_ratings.sort_values(ascending=False)
+                            return similar_ratings
+                        similar_movies = pd.DataFrame() # creating an empty Dataframe
+                        for movie,rating in fav_movies_colab: # Filling the empty dataframe, and extracting from it
+                            similar_movies = similar_movies.append(get_similar(movie,rating),ignore_index = True)
+                        recc_movies = similar_movies.sum().sort_values(ascending=False).head(14)[3:13] #summing and sorting DF, also slicing for no repeats
+                        count = 1
+                        st.markdown('## Top 10 Recommendations based on your movie picks:')
+                        for key, value in dict(recc_movies).items(): # Displaying the output
+                            st.info(str(count) + '. ' + str(key))
+                            count += 1
+                except:
+                    st.error("Oops! Looks like this algorithm does't work.\
+                              We'll need to fix it!")
 
 
     # -------------------------------------------------------------------
@@ -217,5 +222,13 @@ def main():
 
         st.write("**Number of ratings per year**")
         st.image('resources/imgs/number_ratings.png', width=400)
+
+        st.write("**The Elbow Method**")
+        st.image('resources/imgs/elbow.png', width=400)
+        st.info("We use this visualization in order to obtain the optimal clusters for the data, we look for the * bend point * in the data, as we try to optimize the computational power while still having enough data to accuratly build a model from the data. ")
+
+        st.write("**Dendrogram**")
+        st.image('resources/imgs/dendogram.png', width=400)
+        st.info("This is another way to visualize the data to obtain the optimal amount of clusters similar to the * Elbow Method *, we use this to pick the clusters that will maximize our efficientcy in the modelling process.")
 if __name__ == '__main__':
     main()
