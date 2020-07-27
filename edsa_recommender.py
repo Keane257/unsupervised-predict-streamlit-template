@@ -53,10 +53,6 @@ merged = pd.merge(tr,movies,on='movieId') # Merging the dataframes
 merge = merged.copy()
 merge = merged.drop('genres', axis=1)
 
-# new_df = pd.DataFrame()
-# for i in title_list:
-#     new_df = new_df.append(merge[merge['title'] == i])
-
 merge = merge[:500000] # Slicing the data so that there is less computational power required
 m = merge.pivot_table(index=['userId'],columns=['title'],values='rating') # piviting the table into a matrix
 
@@ -73,7 +69,7 @@ def main():
     st.write('----------------------------------------------------------')
     st.title('Movie Recommendation Engine')
     st.write('----------------------------------------------------------')
-    page_options = ["Home", "Recommender System", "How it works", "Solution Overview", "Insights"]
+    page_options = ["Home", "Recommender System", "Info", "Solution Overview", "Insights"]
 
     # -------------------------------------------------------------------
     # ----------- !! THIS CODE MUST NOT BE ALTERED !! -------------------
@@ -158,21 +154,22 @@ def main():
 
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
     
-    if page_selection == "How it works":
-        st.title("How it works")
-##    	st.image(How, caption='', width=500)
-##    	st.subheader("Navigation Bar")
-        st.markdown("Home Screen  - Landing page, gives brief discription of the App")
-    ##	st.image(Home_Page, width=500)
-        st.markdown("How it works - Explains how the app works, from navigating on pages, to how efficient the model used is.")
-    ##	st.image(How_to_Page, width=500)
-        st.markdown("EDA          - Exploratory data analysis shows how we analysing the tweets data sets to summarize their main characteristics, using visuals. EDA is basically for displaying what the data can tell us beyond the formal modeling.")
-    ##	    st.image(EDA_Page, width=500)
-    ##	    st.image(Predictions_Page, width=500)
+    if page_selection == "Info":
+        st.title("Info")
+        st.markdown("* ** Home Screen **  - Landing page, gives brief discription of the App")
+        st.markdown("* ** Info ** - Explains how the app works, from navigating on pages, to how efficient the model used is.")
+        st.markdown("* ** Insights **          - Exploratory data analysis shows how we analysing the tweets data sets to summarize their main characteristics, using visuals. EDA is basically for displaying what the data can tell us beyond the formal modeling.")
+        st.markdown("* ** Solution Overview ** - An overview on how the two different algorithims work")
         st.subheader("App Usage")
-        st.markdown("")
+        st.markdown("Select the type of algorithm you want to use then select three farvorite movies from the drop down list, hit the recommend button and wait for the movie recommendations.")
         st.subheader("Model Performance Evaluation")
         st.markdown("Model evaluation aims to estimate the generalization accuracy of a model on future (unseen) data. Methods for evaluating a model's performance use a test set (i.e data not seen by the model) to evaluate model performance. This evaluation shows total efficiency as scores.")
+        st.subheader("The Team:")
+        st.markdown(" * Buhle Ntushelo ")
+        st.markdown(" * Khanyisa Galela ")
+        st.markdown(" * Keane Byrne ")
+        st.markdown(" * Olwethu Mkhuhlane ")
+        st.markdown(" * Londiwe cele ")
 
 
     if page_selection == "Solution Overview":
