@@ -203,29 +203,29 @@ def main():
                     4. Committed (2014)\n
                     5. Sole Proprietor (2016)\n  """)
         st.write("\n**Distribution for Number of Ratings**")
-        st.image('resources/imgs/rating_distibution.png', width=400)
-        st.image('resources/imgs/distribution_graph.png', width=400)
+        st.image('resources/imgs/rating_distibution.PNG', width=400)
+        st.image('resources/imgs/distribution_graph.PNG', width=400)
         st.info("""From this we can see that people are more likely to give a movie an * Average * rating more than a great or awful rating.
         This makes sense because most movies are average and not every movie is great or awful. This could also lead us to belive that there may be certain biasy around our data.""")
     
-        st.image('resources/imgs/director_ratings.png', width=200)
+        st.image('resources/imgs/director_ratings.PNG', width=200)
         st.info("**These are the top 10 directors who have movies with the highest number of ratings Jonathan Nolan has the highest rating. this concludes that his movies are being watched and enjoyed by the users**")
         
         st.write("**Average of Movie Ratings per Year**")
-        st.image('resources/imgs/rating_year.png', width=400)
+        st.image('resources/imgs/rating_year.PNG', width=400)
 
         st.write("**Average Movie Rating per Week**")
-        st.image('resources/imgs/ratings_week.png', width=400)
+        st.image('resources/imgs/ratings_week.PNG', width=400)
 
         st.write("**Number of ratings per year**")
-        st.image('resources/imgs/number_ratings.png', width=400)
+        st.image('resources/imgs/number_ratings.PNG', width=400)
 
         st.write("**The Elbow Method**")
-        st.image('resources/imgs/elbow.png', width=400)
+        st.image('resources/imgs/elbow.PNG', width=400)
         st.info("We use this visualization in order to obtain the optimal clusters for the data, we look for the * bend point * in the data, as we try to optimize the computational power while still having enough data to accuratly build a model from the data. ")
 
         st.write("**Dendrogram**")
-        st.image('resources/imgs/dendogram.png', width=400)
+        st.image('resources/imgs/dendogram.PNG', width=400)
         st.info("This is another way to visualize the data to obtain the optimal amount of clusters similar to the * Elbow Method *, we use this to pick the clusters that will maximize our efficientcy in the modelling process.")
 if __name__ == '__main__':
     main()
