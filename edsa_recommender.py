@@ -203,7 +203,7 @@ def main():
                     4. Committed (2014)\n
                     5. Sole Proprietor (2016)\n  """)
         st.write("\n**Distribution for Number of Ratings**")
-        st.image('resources/imgs/rating_distibution.png', width=400)
+        st.image('resources/imgs/rating_distribution.png', width=400)
         st.image('resources/imgs/distribution_graph.png', width=400)
         st.info("""From this we can see that people are more likely to give a movie an * Average * rating more than a great or awful rating.
         This makes sense because most movies are average and not every movie is great or awful. This could also lead us to belive that there may be certain biasy around our data.""")
